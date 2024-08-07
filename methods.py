@@ -47,6 +47,7 @@ def select_config():
 
 def set_dhcp(interface):
     commands = [
+        f"nmcli con mod {interface} ipv4.dns-options auto",
         f"nmcli con mod {interface} ipv4.method auto",
         f"nmcli con up {interface}",
     ]
@@ -66,7 +67,6 @@ def set_static(interface, address, prefix, gateway):
         f"nmcli con mod {interface} ipv4.method manual",
         f"nmcli con up {interface}",
     ]
-
     for command in commands:
         result = subprocess.run(command, shell=True, check=True, capture_output=True)
         message = str(result.stdout)
