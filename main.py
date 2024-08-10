@@ -16,9 +16,9 @@ def run_posix():
 
 
 def run_windows():
-    from windows_methods import select_connection, select_config, set_dhcp
+    from windows_methods import select_connection, select_config, set_dhcp, set_static
     while True:
-        # name = select_connection()
+        name = select_connection()
         config = select_config()
         if config.address == "DHCP":
             print(f"Setting{name} to Auto(DHCP)...")
@@ -29,11 +29,11 @@ def run_windows():
         time.sleep(2)
 
 
+if __name__ == "__main__":
+    if os.name == 'posix':
+        print("POSIX")
+        run_posix()
 
-if os.name == 'posix':
-    print("POSIX")
-    run_posix()
-
-if os.name == 'nt':
-    print("WINDOWS")
-    run_windows()
+    if os.name == 'nt':
+        print("WINDOWS")
+        run_windows()

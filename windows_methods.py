@@ -1,8 +1,6 @@
 import subprocess
 from configs import *
-
 import psutil
-
 
 
 def active_connections():
@@ -20,7 +18,7 @@ def active_connections():
             address = info[1].address
             netmask = info[1].netmask
             connections.append((interface, address, netmask))
-    return connections  
+    return connections
 
 
 def select_connection():

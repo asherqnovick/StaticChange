@@ -3,6 +3,9 @@ import gi
 from configs import *
 gi.require_version('NM', '1.0')
 from gi.repository import NM
+import psutil
+
+
 
 def active_connections():
     client = NM.Client.new(None)
@@ -15,7 +18,6 @@ def active_connections():
         address = connection.get_ip4_config().get_addresses()[0].get_address()
         prefix = connection.get_ip4_config().get_addresses()[0].get_prefix()
         gateway = connection.get_ip4_config().get_gateway()
-        mode = dir(connection.get_ip4_config())
         connections.append((name, interface, address, prefix, gateway))
     return connections
 
